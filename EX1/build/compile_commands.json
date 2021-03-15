@@ -1,0 +1,12 @@
+[
+{
+  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/EX1.dir/includes_CXX.rsp -g -o CMakeFiles\\EX1.dir\\src\\test.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\test.cpp",
+  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/test.cpp"
+},
+{
+  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/EX1.dir/includes_CXX.rsp -g -o CMakeFiles\\EX1.dir\\src\\test_lib.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\test_lib.cpp",
+  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/test_lib.cpp"
+}
+]
