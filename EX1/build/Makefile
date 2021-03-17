@@ -432,19 +432,6 @@ ContinuousStart/fast:
 .PHONY : ContinuousStart/fast
 
 #=============================================================================
-# Target rules for targets named EX1
-
-# Build rule for target.
-EX1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 EX1
-.PHONY : EX1
-
-# fast build rule for target.
-EX1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/build
-.PHONY : EX1/fast
-
-#=============================================================================
 # Target rules for targets named ContinuousUpdate
 
 # Build rule for target.
@@ -522,53 +509,79 @@ ContinuousCoverage/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousCoverage.dir\build.make CMakeFiles/ContinuousCoverage.dir/build
 .PHONY : ContinuousCoverage/fast
 
-src/test.obj: src/test.cpp.obj
-.PHONY : src/test.obj
+#=============================================================================
+# Target rules for targets named sender
+
+# Build rule for target.
+sender: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sender
+.PHONY : sender
+
+# fast build rule for target.
+sender/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/build
+.PHONY : sender/fast
+
+#=============================================================================
+# Target rules for targets named channel
+
+# Build rule for target.
+channel: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 channel
+.PHONY : channel
+
+# fast build rule for target.
+channel/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/build
+.PHONY : channel/fast
+
+src/channel.obj: src/channel.cpp.obj
+.PHONY : src/channel.obj
 
 # target to build an object file
-src/test.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/src/test.cpp.obj
-.PHONY : src/test.cpp.obj
+src/channel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/channel.cpp.obj
+.PHONY : src/channel.cpp.obj
 
-src/test.i: src/test.cpp.i
-.PHONY : src/test.i
+src/channel.i: src/channel.cpp.i
+.PHONY : src/channel.i
 
 # target to preprocess a source file
-src/test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/src/test.cpp.i
-.PHONY : src/test.cpp.i
+src/channel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/channel.cpp.i
+.PHONY : src/channel.cpp.i
 
-src/test.s: src/test.cpp.s
-.PHONY : src/test.s
+src/channel.s: src/channel.cpp.s
+.PHONY : src/channel.s
 
 # target to generate assembly for a file
-src/test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/src/test.cpp.s
-.PHONY : src/test.cpp.s
+src/channel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/channel.cpp.s
+.PHONY : src/channel.cpp.s
 
-src/test_lib.obj: src/test_lib.cpp.obj
-.PHONY : src/test_lib.obj
+src/sender.obj: src/sender.cpp.obj
+.PHONY : src/sender.obj
 
 # target to build an object file
-src/test_lib.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/src/test_lib.cpp.obj
-.PHONY : src/test_lib.cpp.obj
+src/sender.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/sender.cpp.obj
+.PHONY : src/sender.cpp.obj
 
-src/test_lib.i: src/test_lib.cpp.i
-.PHONY : src/test_lib.i
+src/sender.i: src/sender.cpp.i
+.PHONY : src/sender.i
 
 # target to preprocess a source file
-src/test_lib.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/src/test_lib.cpp.i
-.PHONY : src/test_lib.cpp.i
+src/sender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/sender.cpp.i
+.PHONY : src/sender.cpp.i
 
-src/test_lib.s: src/test_lib.cpp.s
-.PHONY : src/test_lib.s
+src/sender.s: src/sender.cpp.s
+.PHONY : src/sender.s
 
 # target to generate assembly for a file
-src/test_lib.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/src/test_lib.cpp.s
-.PHONY : src/test_lib.cpp.s
+src/sender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/sender.cpp.s
+.PHONY : src/sender.cpp.s
 
 # Help Target
 help:
@@ -609,13 +622,14 @@ help:
 	@echo ... NightlySubmit
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
-	@echo ... EX1
-	@echo ... src/test.obj
-	@echo ... src/test.i
-	@echo ... src/test.s
-	@echo ... src/test_lib.obj
-	@echo ... src/test_lib.i
-	@echo ... src/test_lib.s
+	@echo ... channel
+	@echo ... sender
+	@echo ... src/channel.obj
+	@echo ... src/channel.i
+	@echo ... src/channel.s
+	@echo ... src/sender.obj
+	@echo ... src/sender.i
+	@echo ... src/sender.s
 .PHONY : help
 
 

@@ -1,5 +1,4 @@
 #include "test_lib.h"
-
 test_class::test_class(std::string name){
   this->name = name;
 }

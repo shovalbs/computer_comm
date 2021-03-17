@@ -21,13 +21,14 @@ C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/Expe
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ExperimentalMemCheck.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ExperimentalSubmit.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousStart.dir
-C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/EX1.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousUpdate.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousSubmit.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousConfigure.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousBuild.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousTest.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousCoverage.dir
+C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/sender.dir
+C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/channel.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/package.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/test.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/edit_cache.dir

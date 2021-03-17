@@ -62,7 +62,8 @@ CMAKE_BINARY_DIR = C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\bu
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/EX1.dir/all
+all: CMakeFiles/sender.dir/all
+all: CMakeFiles/channel.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -92,13 +93,14 @@ clean: CMakeFiles/ExperimentalCoverage.dir/clean
 clean: CMakeFiles/ExperimentalMemCheck.dir/clean
 clean: CMakeFiles/ExperimentalSubmit.dir/clean
 clean: CMakeFiles/ContinuousStart.dir/clean
-clean: CMakeFiles/EX1.dir/clean
 clean: CMakeFiles/ContinuousUpdate.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
 clean: CMakeFiles/ContinuousConfigure.dir/clean
 clean: CMakeFiles/ContinuousBuild.dir/clean
 clean: CMakeFiles/ContinuousTest.dir/clean
 clean: CMakeFiles/ContinuousCoverage.dir/clean
+clean: CMakeFiles/sender.dir/clean
+clean: CMakeFiles/channel.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -674,32 +676,6 @@ CMakeFiles/ContinuousStart.dir/clean:
 .PHONY : CMakeFiles/ContinuousStart.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/EX1.dir
-
-# All Build rule for target.
-CMakeFiles/EX1.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=1,2,3 "Built target EX1"
-.PHONY : CMakeFiles/EX1.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/EX1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/EX1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 0
-.PHONY : CMakeFiles/EX1.dir/rule
-
-# Convenience name for target.
-EX1: CMakeFiles/EX1.dir/rule
-.PHONY : EX1
-
-# clean rule for target.
-CMakeFiles/EX1.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EX1.dir\build.make CMakeFiles/EX1.dir/clean
-.PHONY : CMakeFiles/EX1.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/ContinuousUpdate.dir
 
 # All Build rule for target.
@@ -854,6 +830,58 @@ ContinuousCoverage: CMakeFiles/ContinuousCoverage.dir/rule
 CMakeFiles/ContinuousCoverage.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousCoverage.dir\build.make CMakeFiles/ContinuousCoverage.dir/clean
 .PHONY : CMakeFiles/ContinuousCoverage.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sender.dir
+
+# All Build rule for target.
+CMakeFiles/sender.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=3,4 "Built target sender"
+.PHONY : CMakeFiles/sender.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sender.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/sender.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 0
+.PHONY : CMakeFiles/sender.dir/rule
+
+# Convenience name for target.
+sender: CMakeFiles/sender.dir/rule
+.PHONY : sender
+
+# clean rule for target.
+CMakeFiles/sender.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/clean
+.PHONY : CMakeFiles/sender.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/channel.dir
+
+# All Build rule for target.
+CMakeFiles/channel.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=1,2 "Built target channel"
+.PHONY : CMakeFiles/channel.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/channel.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/channel.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 0
+.PHONY : CMakeFiles/channel.dir/rule
+
+# Convenience name for target.
+channel: CMakeFiles/channel.dir/rule
+.PHONY : channel
+
+# clean rule for target.
+CMakeFiles/channel.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/clean
+.PHONY : CMakeFiles/channel.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

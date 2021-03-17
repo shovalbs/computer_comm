@@ -42,7 +42,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -85,7 +86,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -152,13 +154,6 @@
 					"id" : "ContinuousUpdate::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-ContinuousUpdate-Debug-25c1c509b31eb0dfaad3.json",
 					"name" : "ContinuousUpdate",
-					"projectIndex" : 0
-				},
-				{
-					"directoryIndex" : 0,
-					"id" : "EX1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-EX1-Debug-acbb6ee7815cf36e8c3b.json",
-					"name" : "EX1",
 					"projectIndex" : 0
 				},
 				{
@@ -292,6 +287,20 @@
 					"id" : "NightlyUpdate::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-NightlyUpdate-Debug-47440942680c1a3ae309.json",
 					"name" : "NightlyUpdate",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "channel::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-channel-Debug-b2903b54394e72b81989.json",
+					"name" : "channel",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sender::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sender-Debug-df3871d039d612f4c573.json",
+					"name" : "sender",
 					"projectIndex" : 0
 				}
 			]

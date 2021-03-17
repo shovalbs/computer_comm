@@ -80,11 +80,12 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ExperimentalMemCheck.dir/DependInfo.cmake"
   "CMakeFiles/ExperimentalSubmit.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousStart.dir/DependInfo.cmake"
-  "CMakeFiles/EX1.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousUpdate.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousConfigure.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousBuild.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousTest.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousCoverage.dir/DependInfo.cmake"
+  "CMakeFiles/sender.dir/DependInfo.cmake"
+  "CMakeFiles/channel.dir/DependInfo.cmake"
   )
