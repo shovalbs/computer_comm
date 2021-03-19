@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/ServerUtil.cpp" "CMakeFiles/channel.dir/src/ServerUtil.cpp.obj" "gcc" "CMakeFiles/channel.dir/src/ServerUtil.cpp.obj.d"
   "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/channel.cpp" "CMakeFiles/channel.dir/src/channel.cpp.obj" "gcc" "CMakeFiles/channel.dir/src/channel.cpp.obj.d"
   )
 

@@ -535,6 +535,33 @@ channel/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/build
 .PHONY : channel/fast
 
+src/ServerUtil.obj: src/ServerUtil.cpp.obj
+.PHONY : src/ServerUtil.obj
+
+# target to build an object file
+src/ServerUtil.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/ServerUtil.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/ServerUtil.cpp.obj
+.PHONY : src/ServerUtil.cpp.obj
+
+src/ServerUtil.i: src/ServerUtil.cpp.i
+.PHONY : src/ServerUtil.i
+
+# target to preprocess a source file
+src/ServerUtil.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/ServerUtil.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/ServerUtil.cpp.i
+.PHONY : src/ServerUtil.cpp.i
+
+src/ServerUtil.s: src/ServerUtil.cpp.s
+.PHONY : src/ServerUtil.s
+
+# target to generate assembly for a file
+src/ServerUtil.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/ServerUtil.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/ServerUtil.cpp.s
+.PHONY : src/ServerUtil.cpp.s
+
 src/channel.obj: src/channel.cpp.obj
 .PHONY : src/channel.obj
 
@@ -624,6 +651,9 @@ help:
 	@echo ... NightlyUpdate
 	@echo ... channel
 	@echo ... sender
+	@echo ... src/ServerUtil.obj
+	@echo ... src/ServerUtil.i
+	@echo ... src/ServerUtil.s
 	@echo ... src/channel.obj
 	@echo ... src/channel.i
 	@echo ... src/channel.s

@@ -2,21 +2,24 @@
 #define WIN32_LEAN_AND_MEAN
 #endif
 
-#include <windows.h>
 #include <winsock2.h>
+#include <windows.h>
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
 #include <stdio.h>
 #include <errno.h>
+#include <string.h>
 
 #pragma comment(lib, "Ws2_32.lib")
 #define DEFAULT_PORT "27015"
+#define DEFAULT_BUFLEN 512
 int main(int argc, char** argv) {
 
   //global objects
   WSADATA wsaData;
   int iResult;
   int errnum;
+  char sendbuf[DEFAULT_BUFLEN];
 
   //Winsock init
   iResult = WSAStartup(MAKEWORD(2,2),&wsaData);
@@ -57,25 +60,40 @@ int main(int argc, char** argv) {
     freeaddrinfo(result);
     WSACleanup();
     return 1;
-}
-printf("socket object created\n");
+  }
+  printf("socket object created\n");
 
-// Connect to server.
-iResult = connect( ConnectSocket, ptr->ai_addr, (int)ptr->ai_addrlen);
-if (iResult == SOCKET_ERROR) {
+  // Connect to server.
+  iResult = connect( ConnectSocket, ptr->ai_addr, (int)ptr->ai_addrlen);
+  if (iResult == SOCKET_ERROR) {
+      closesocket(ConnectSocket);
+      ConnectSocket = INVALID_SOCKET;
+  }
+  freeaddrinfo(result);
+  printf("socket found\n");
+
+  if (ConnectSocket == INVALID_SOCKET) {
+      printf("Unable to connect to server!\n");
+      WSACleanup();
+      return 1;
+  }
+  printf("connected to server\n");
+
+  //send startup message 
+  strcpy(sendbuf,"hello server\n");
+  iResult = send(ConnectSocket,sendbuf,(int)strlen(sendbuf),0);
+  if(iResult == SOCKET_ERROR){
+    printf("send failed: %d\n",WSAGetLastError());
     closesocket(ConnectSocket);
-    ConnectSocket = INVALID_SOCKET;
-}
-freeaddrinfo(result);
-printf("socket found\n");
-
-if (ConnectSocket == INVALID_SOCKET) {
-    printf("Unable to connect to server!\n");
     WSACleanup();
     return 1;
-}
-printf("connected to server\n");
+  }
+  printf("connection message sent\n");
 
+  //cleanup
+  closesocket(ConnectSocket);
+  WSACleanup();
+  printf("client closed cleanly\n");
   return 0;
 }
 

@@ -838,12 +838,12 @@ CMakeFiles/ContinuousCoverage.dir/clean:
 CMakeFiles/sender.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=3,4 "Built target sender"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=4,5,6 "Built target sender"
 .PHONY : CMakeFiles/sender.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sender.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/sender.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 0
 .PHONY : CMakeFiles/sender.dir/rule
@@ -864,12 +864,12 @@ CMakeFiles/sender.dir/clean:
 CMakeFiles/channel.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=1,2 "Built target channel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles --progress-num=1,2,3 "Built target channel"
 .PHONY : CMakeFiles/channel.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/channel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/channel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\nadav\source\repos\nadavschwalb\computer_comm\EX1\build\CMakeFiles 0
 .PHONY : CMakeFiles/channel.dir/rule
