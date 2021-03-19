@@ -16,7 +16,7 @@
 #define DEFAULT_PORT "27015"
 #define DEFAULT_BUFLEN 512
 int main(int argc, char** argv) {
-
+  //argv  1:sender_port 2:receiver_ip 3:receiver_port
   //global objects
   WSADATA wsaData;
   int iResult;
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
   printf("winsock initialized\n");
 
   //fill socket parameters
-  struct addrinfo *result = NULL, *ptr = NULL, hints;
+  struct addrinfo *recv_result = NULL, *send_result = NULL, *ptr = NULL, hints;
 
   ZeroMemory(&hints, sizeof (hints));
   hints.ai_family = AF_INET;
@@ -41,68 +41,86 @@ int main(int argc, char** argv) {
   hints.ai_protocol = IPPROTO_UDP;
   hints.ai_flags = AI_PASSIVE;
 
-  iResult = getaddrinfo(NULL, DEFAULT_PORT, &hints, &result);
+  //resolve socket address
+  iResult = getaddrinfo(argv[2], argv[3], &hints, &recv_result);
   if (iResult != 0) {
       printf("getaddrinfo failed: %s\n", strerror(iResult));
       WSACleanup();
       return 1;
   }
-  printf("socket created\n");
-
-  //create socket
-
-  SOCKET ListenSocket = INVALID_SOCKET;
-  ListenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
-  if (ListenSocket == INVALID_SOCKET) {
-    printf("Error at socket(): %ld\n", WSAGetLastError());
-    freeaddrinfo(result);
-    WSACleanup();
-    return 1;
-  }
- 
-
-  // Setup the UDP listening socket
-  iResult = bind( ListenSocket, result->ai_addr, (int)result->ai_addrlen);
-  if (iResult == SOCKET_ERROR) {
-      printf("bind failed with error: %d\n", WSAGetLastError());
-      freeaddrinfo(result);
-      closesocket(ListenSocket);
+    iResult = getaddrinfo(NULL, argv[1], &hints, &send_result);
+  if (iResult != 0) {
+      printf("getaddrinfo failed: %s\n", strerror(iResult));
       WSACleanup();
       return 1;
   }
-  printf("socket bound\n");
-  freeaddrinfo(result);
+  printf("socket address resolved\n");
+  //create socket
 
-  //listen on socket for client
-  // printf("listening for client\n");
-  // if ( listen( ListenSocket, SOMAXCONN ) == SOCKET_ERROR ) {
-  // printf( "Listen failed with error: %ld\n", WSAGetLastError());
-  // printWSAError();
-  // closesocket(ListenSocket);
-  // WSACleanup();
-  // return 1;
-  // }
-  // printf("accept client\n");
-  // //client socket
-  // SOCKET ClientSocket;
+  SOCKET ChannelRecvSocket = INVALID_SOCKET;
+  SOCKET ChannelSendSocket = INVALID_SOCKET;
 
-  // // Accept a client socket
-  // ClientSocket = accept(ListenSocket, NULL, NULL);
-  // if (ClientSocket == INVALID_SOCKET) {
-  //     printf("accept failed: %d\n", WSAGetLastError());
-  //     closesocket(ListenSocket);
-  //     WSACleanup();
-  //     return 1;
-  // }
-   printf("client connected reciving data\n");
+  ChannelRecvSocket = socket(recv_result->ai_family, recv_result->ai_socktype, recv_result->ai_protocol);
+  if (ChannelRecvSocket == INVALID_SOCKET) {
+    printf("receiver socket:\n");
+    printWSAError();
+    freeaddrinfo(recv_result);
+    WSACleanup();
+    return 1;
+  }
+  printf("receiver socket created\n");
+  ChannelSendSocket = socket(send_result->ai_family, send_result->ai_socktype, send_result->ai_protocol);
+  if (ChannelSendSocket == INVALID_SOCKET) {
+    printf("sender socket:\n");
+    printWSAError();
+    freeaddrinfo(send_result);
+    WSACleanup();
+    return 1;
+  }
+  printf("sender socket created\n");
+
+  // bind sender socket
+  iResult = bind( ChannelSendSocket, send_result->ai_addr, (int)send_result->ai_addrlen);
+  if (iResult == SOCKET_ERROR) {
+      printWSAError();
+      freeaddrinfo(send_result);
+      closesocket(ChannelSendSocket);
+      WSACleanup();
+      return 1;
+  }
+  printf("sender socket bound\n");
+  freeaddrinfo(send_result);
+
+
+  //connect receiver socket
+  iResult = connect( ChannelRecvSocket, recv_result->ai_addr, (int)recv_result->ai_addrlen);
+  if (iResult == SOCKET_ERROR) {
+      closesocket(ChannelRecvSocket);
+      ChannelRecvSocket = INVALID_SOCKET;
+      printWSAError();
+  }
+  freeaddrinfo(recv_result);
+  printf("receiver socket found\n");
+
+  if (ChannelRecvSocket == INVALID_SOCKET) {
+      printf("Unable to connect to server!\n");
+      WSACleanup();
+      return 1;
+  }
+  printf("connected to reciver socket\n");
 
   // Receive until the peer shuts down the connection
   do
   {
-    printf("reciveing data from socket\n");
-    iResult = recv(ListenSocket,recvbuf,recvbuflen,0);
+    printf("reciveing data from sender socket\n");
+    iResult = recv(ChannelSendSocket,recvbuf,recvbuflen,0);
     if(iResult > 0){
       printf("%s",recvbuf);
+      iResult = send(ChannelRecvSocket,recvbuf,DEFAULT_BUFLEN,0);
+      printf("message sent\n");
+      if(iResult == 0){
+        printWSAError();
+      }
     } 
     else if(iResult == 0){
       printf("connection closing\n");
@@ -110,23 +128,24 @@ int main(int argc, char** argv) {
     }
     else{
       printf("connection failed: %d\n",WSAGetLastError());
-      closesocket(ListenSocket);
+      closesocket(ChannelSendSocket);
       WSACleanup();
       return 1;
     }
   } while (TRUE);
 
   //shutdown channle
-  iResult = shutdown(ListenSocket,SD_BOTH);
+  iResult = shutdown(ChannelSendSocket,SD_BOTH);
   if(iResult == SOCKET_ERROR){
       printf("shutdown failed: %d\n", WSAGetLastError());
-      closesocket(ListenSocket);
+      closesocket(ChannelSendSocket);
       WSACleanup();
       return 1;  
   }
 
 // cleanup
-closesocket(ListenSocket);
+closesocket(ChannelSendSocket);
+closesocket(ChannelRecvSocket);
 WSACleanup();
 printf("server - client shutdown cleanly\n");
 

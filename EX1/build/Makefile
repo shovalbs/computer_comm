@@ -497,6 +497,19 @@ ContinuousTest/fast:
 .PHONY : ContinuousTest/fast
 
 #=============================================================================
+# Target rules for targets named receiver
+
+# Build rule for target.
+receiver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 receiver
+.PHONY : receiver
+
+# fast build rule for target.
+receiver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/build
+.PHONY : receiver/fast
+
+#=============================================================================
 # Target rules for targets named ContinuousCoverage
 
 # Build rule for target.
@@ -540,6 +553,7 @@ src/ServerUtil.obj: src/ServerUtil.cpp.obj
 
 # target to build an object file
 src/ServerUtil.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/ServerUtil.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/ServerUtil.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/ServerUtil.cpp.obj
 .PHONY : src/ServerUtil.cpp.obj
@@ -549,6 +563,7 @@ src/ServerUtil.i: src/ServerUtil.cpp.i
 
 # target to preprocess a source file
 src/ServerUtil.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/ServerUtil.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/ServerUtil.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/ServerUtil.cpp.i
 .PHONY : src/ServerUtil.cpp.i
@@ -558,6 +573,7 @@ src/ServerUtil.s: src/ServerUtil.cpp.s
 
 # target to generate assembly for a file
 src/ServerUtil.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/ServerUtil.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sender.dir\build.make CMakeFiles/sender.dir/src/ServerUtil.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/ServerUtil.cpp.s
 .PHONY : src/ServerUtil.cpp.s
@@ -585,6 +601,30 @@ src/channel.s: src/channel.cpp.s
 src/channel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\channel.dir\build.make CMakeFiles/channel.dir/src/channel.cpp.s
 .PHONY : src/channel.cpp.s
+
+src/receiver.obj: src/receiver.cpp.obj
+.PHONY : src/receiver.obj
+
+# target to build an object file
+src/receiver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/receiver.cpp.obj
+.PHONY : src/receiver.cpp.obj
+
+src/receiver.i: src/receiver.cpp.i
+.PHONY : src/receiver.i
+
+# target to preprocess a source file
+src/receiver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/receiver.cpp.i
+.PHONY : src/receiver.cpp.i
+
+src/receiver.s: src/receiver.cpp.s
+.PHONY : src/receiver.s
+
+# target to generate assembly for a file
+src/receiver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\receiver.dir\build.make CMakeFiles/receiver.dir/src/receiver.cpp.s
+.PHONY : src/receiver.cpp.s
 
 src/sender.obj: src/sender.cpp.obj
 .PHONY : src/sender.obj
@@ -650,6 +690,7 @@ help:
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
 	@echo ... channel
+	@echo ... receiver
 	@echo ... sender
 	@echo ... src/ServerUtil.obj
 	@echo ... src/ServerUtil.i
@@ -657,6 +698,9 @@ help:
 	@echo ... src/channel.obj
 	@echo ... src/channel.i
 	@echo ... src/channel.s
+	@echo ... src/receiver.obj
+	@echo ... src/receiver.i
+	@echo ... src/receiver.s
 	@echo ... src/sender.obj
 	@echo ... src/sender.i
 	@echo ... src/sender.s

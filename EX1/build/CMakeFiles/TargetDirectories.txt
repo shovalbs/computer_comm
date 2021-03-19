@@ -26,6 +26,7 @@ C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/Cont
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousConfigure.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousBuild.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousTest.dir
+C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/receiver.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/ContinuousCoverage.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/sender.dir
 C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build/CMakeFiles/channel.dir

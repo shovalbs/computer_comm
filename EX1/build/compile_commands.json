@@ -1,6 +1,16 @@
 [
 {
   "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/receiver.dir/includes_CXX.rsp -g -o CMakeFiles\\receiver.dir\\src\\receiver.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\receiver.cpp",
+  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/receiver.cpp"
+},
+{
+  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/receiver.dir/includes_CXX.rsp -g -o CMakeFiles\\receiver.dir\\src\\ServerUtil.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\ServerUtil.cpp",
+  "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/ServerUtil.cpp"
+},
+{
+  "directory": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/build",
   "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\X86_64~2.EXE  @CMakeFiles/sender.dir/includes_CXX.rsp -g -o CMakeFiles\\sender.dir\\src\\sender.cpp.obj -c C:\\Users\\nadav\\source\\repos\\nadavschwalb\\computer_comm\\EX1\\src\\sender.cpp",
   "file": "C:/Users/nadav/source/repos/nadavschwalb/computer_comm/EX1/src/sender.cpp"
 },
