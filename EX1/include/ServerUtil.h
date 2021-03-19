@@ -8,5 +8,8 @@
 #include <winerror.h>
 
 #define ERROR_BUF_LEN 512
+#define DEFAULT_BUFLEN 512
 //functions
 void printWSAError();
+BOOL send_safe(SOCKET* socket, char* buffer);
+BOOL recv_safe(SOCKET* socket, char* buffer);

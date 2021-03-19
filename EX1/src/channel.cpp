@@ -14,7 +14,6 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 #define DEFAULT_PORT "27015"
-#define DEFAULT_BUFLEN 512
 int main(int argc, char** argv) {
   //argv  1:sender_port 2:receiver_ip 3:receiver_port
   //global objects
@@ -113,15 +112,16 @@ int main(int argc, char** argv) {
   do
   {
     printf("reciveing data from sender socket\n");
-    iResult = recv(ChannelSendSocket,recvbuf,recvbuflen,0);
-    if(iResult > 0){
+    // iResult = recv(ChannelSendSocket,recvbuf,recvbuflen,0);
+    if(!recv_safe(&ChannelSendSocket,recvbuf)) return 1;
       printf("%s",recvbuf);
-      iResult = send(ChannelRecvSocket,recvbuf,DEFAULT_BUFLEN,0);
-      printf("message sent\n");
-      if(iResult == 0){
-        printWSAError();
-      }
-    } 
+    if(!send_safe(&ChannelRecvSocket,recvbuf)) return 1;
+      // iResult = send(ChannelRecvSocket,recvbuf,DEFAULT_BUFLEN,0);
+      // printf("message sent\n");
+      // if(iResult == 0){
+      //   printWSAError();
+      // }
+    //} 
     else if(iResult == 0){
       printf("connection closing\n");
       break;

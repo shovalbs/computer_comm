@@ -1,5 +1,4 @@
 #include "ServerUtil.h"
-
 //functions
 
 void printWSAError(){
@@ -14,3 +13,26 @@ void printWSAError(){
   printf("%s\n",errorMessage);
 
 }
+
+BOOL send_safe(SOCKET* socket, char* buffer){
+  int  iResult = send(*socket,buffer,DEFAULT_BUFLEN,0);
+  if(iResult == SOCKET_ERROR){
+    printWSAError();
+    closesocket(*socket);
+    WSACleanup();
+    return FALSE;
+  }
+  return TRUE;
+}
+
+BOOL recv_safe(SOCKET* socket, char* buffer){
+  int  iResult = recv(*socket,buffer,DEFAULT_BUFLEN,0);
+  if(iResult == SOCKET_ERROR){
+    printWSAError();
+    closesocket(*socket);
+    WSACleanup();
+    return FALSE;
+  }
+  return TRUE;
+}
+

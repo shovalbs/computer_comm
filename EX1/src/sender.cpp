@@ -13,8 +13,7 @@
 #include "ServerUtil.h"
 
 #pragma comment(lib, "Ws2_32.lib")
-#define DEFAULT_PORT "27015"
-#define DEFAULT_BUFLEN 512
+
 int main(int argc, char** argv) {
   //params order 1:ip 2:port 3:filename
   //global objects
@@ -84,17 +83,18 @@ int main(int argc, char** argv) {
 
   //send startup message 
   strcpy(sendbuf,"hello server\n");
-  iResult = send(ConnectSocket,sendbuf,(int)strlen(sendbuf),0);
-  if(iResult == SOCKET_ERROR){
-    printf("send failed: %d\n",WSAGetLastError());
-    closesocket(ConnectSocket);
-    WSACleanup();
-    return 1;
-  }
+  // iResult = send(ConnectSocket,sendbuf,(int)strlen(sendbuf),0);
+  // if(iResult == SOCKET_ERROR){
+  //   printf("send failed: %d\n",WSAGetLastError());
+  //   closesocket(ConnectSocket);
+  //   WSACleanup();
+  //   return 1;
+  // }
+  if(!send_safe(&ConnectSocket,sendbuf)) return 1;
   printf("connection message sent\n");
 
   //wait for response
-  
+
   //cleanup
   closesocket(ConnectSocket);
   WSACleanup();

@@ -13,8 +13,7 @@
 #include "time.h"
 
 #pragma comment(lib, "Ws2_32.lib")
-#define DEFAULT_PORT "27015"
-#define DEFAULT_BUFLEN 512
+
 int main(int argc, char** argv) {
   //argv - 1:port
   //global objects
@@ -78,7 +77,8 @@ int main(int argc, char** argv) {
   do
   {
     printf("reciveing data from socket\n");
-    iResult = recv(ReceiverSocket,recvbuf,DEFAULT_BUFLEN,0);
+    //iResult = recv(ReceiverSocket,recvbuf,DEFAULT_BUFLEN,0);
+    if(!recv_safe(&ReceiverSocket,recvbuf)) return 1;
     if(iResult > 0){
       printf("%s",recvbuf);
     } 
