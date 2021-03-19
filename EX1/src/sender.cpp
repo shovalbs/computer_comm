@@ -9,12 +9,14 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
+#include "ServerUtil.h"
 
 #pragma comment(lib, "Ws2_32.lib")
 #define DEFAULT_PORT "27015"
 #define DEFAULT_BUFLEN 512
 int main(int argc, char** argv) {
-
+  //params order 1:ip 2:port 3:filename
   //global objects
   WSADATA wsaData;
   int iResult;
@@ -37,9 +39,10 @@ int main(int argc, char** argv) {
   hints.ai_protocol = IPPROTO_UDP;
 
   // Resolve the server address and port
-  iResult = getaddrinfo(argv[1], DEFAULT_PORT, &hints, &result);
+  //argv[1] = ip argv[2] = port
+  iResult = getaddrinfo(argv[1],argv[2], &hints, &result);
   if (iResult != 0) {
-      printf("getaddrinfo failed: %d\n", iResult);
+      printWSAError();
       WSACleanup();
       return 1;
   }
@@ -63,7 +66,7 @@ int main(int argc, char** argv) {
   }
   printf("socket object created\n");
 
-  // Connect to server.
+  // Connect to server on specified port
   iResult = connect( ConnectSocket, ptr->ai_addr, (int)ptr->ai_addrlen);
   if (iResult == SOCKET_ERROR) {
       closesocket(ConnectSocket);
@@ -90,6 +93,8 @@ int main(int argc, char** argv) {
   }
   printf("connection message sent\n");
 
+  //wait for response
+  
   //cleanup
   closesocket(ConnectSocket);
   WSACleanup();
