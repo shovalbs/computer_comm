@@ -14,9 +14,9 @@ void printWSAError(){
 
 }
 
-BOOL send_safe(SOCKET* socket, char* buffer){
-  int  iResult = send(*socket,buffer,DEFAULT_BUFLEN,0);
-  if(iResult == SOCKET_ERROR){
+BOOL send_safe(SOCKET* socket, char* buffer,int* iResult){
+  *iResult = send(*socket,buffer,DEFAULT_BUFLEN,0);
+  if(*iResult == SOCKET_ERROR){
     printWSAError();
     closesocket(*socket);
     WSACleanup();
@@ -25,9 +25,31 @@ BOOL send_safe(SOCKET* socket, char* buffer){
   return TRUE;
 }
 
-BOOL recv_safe(SOCKET* socket, char* buffer){
-  int  iResult = recv(*socket,buffer,DEFAULT_BUFLEN,0);
-  if(iResult == SOCKET_ERROR){
+BOOL sendto_safe(SOCKET* socket, char* buffer,sockaddr_in* to,int tolen,int* iResult){
+  *iResult = sendto(*socket,buffer,DEFAULT_BUFLEN,0,(SOCKADDR*)to,tolen);
+  if(*iResult == SOCKET_ERROR){
+    printWSAError();
+    closesocket(*socket);
+    WSACleanup();
+    return FALSE;
+  }
+  return TRUE;
+}
+
+BOOL recv_safe(SOCKET* socket, char* buffer,int* iResult){
+  *iResult = recv(*socket,buffer,DEFAULT_BUFLEN,0);
+  if(*iResult == SOCKET_ERROR){
+    printWSAError();
+    closesocket(*socket);
+    WSACleanup();
+    return FALSE;
+  }
+  return TRUE;
+}
+
+BOOL recvfrom_safe(SOCKET* socket, char* buffer,sockaddr_in* from,int* fromlen,int* iResult){
+  *iResult = recvfrom(*socket,buffer,DEFAULT_BUFLEN,0,(SOCKADDR*) from,fromlen);
+  if(*iResult == SOCKET_ERROR){
     printWSAError();
     closesocket(*socket);
     WSACleanup();

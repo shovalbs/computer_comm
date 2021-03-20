@@ -20,8 +20,15 @@ int main(int argc, char** argv) {
   WSADATA wsaData;
   int iResult;
   char recvbuf[DEFAULT_BUFLEN];
+  char sendbuf[DEFAULT_BUFLEN];
   int iSendResult;
   int recvbuflen = DEFAULT_BUFLEN;
+
+  //address structs
+  struct sockaddr_in sender_addr;
+  struct sockaddr_in recver_addr;
+  int sender_addr_size = sizeof(sender_addr);
+  int recver_addr_size = sizeof(recver_addr);
 
   //Winsock init
   iResult = WSAStartup(MAKEWORD(2,2),&wsaData);
@@ -112,26 +119,30 @@ int main(int argc, char** argv) {
   do
   {
     printf("reciveing data from sender socket\n");
-    // iResult = recv(ChannelSendSocket,recvbuf,recvbuflen,0);
-    if(!recv_safe(&ChannelSendSocket,recvbuf)) return 1;
-      printf("%s",recvbuf);
-    if(!send_safe(&ChannelRecvSocket,recvbuf)) return 1;
-      // iResult = send(ChannelRecvSocket,recvbuf,DEFAULT_BUFLEN,0);
-      // printf("message sent\n");
-      // if(iResult == 0){
-      //   printWSAError();
-      // }
-    //} 
-    else if(iResult == 0){
-      printf("connection closing\n");
-      break;
+    //receive msg from sender
+    if(!recvfrom_safe(&ChannelSendSocket,recvbuf,&sender_addr,&sender_addr_size,&iResult)) return 1;
+    if(iResult>0){
+      printf("from sender: %s\n",recvbuf);
+      //if(!sendto_safe(&ChannelRecvSocket,recvbuf,&recver_addr,recver_addr_size,&iResult)) return 1;
+      if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));
+      printf("message sent to receiver\n");
+      if(!recvfrom_safe(&ChannelRecvSocket,recvbuf,&recver_addr,&recver_addr_size,&iResult)) return 1;
+      if(iResult > 0){
+        printf("from receiver: %s\n",recvbuf);
+        strcpy(sendbuf,"response to sender from channel\n");
+        if(!sendto_safe(&ChannelSendSocket,sendbuf,&sender_addr,sender_addr_size,&iResult)) return 1;
+        printf("message sent to sender\n");
+      }
+      else{
+        printf("mesage from receiver empty\n");
+        break;
+      }
     }
     else{
-      printf("connection failed: %d\n",WSAGetLastError());
-      closesocket(ChannelSendSocket);
-      WSACleanup();
-      return 1;
+      printf("message from sender empty\n");
+      break;
     }
+
   } while (TRUE);
 
   //shutdown channle

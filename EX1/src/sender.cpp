@@ -21,6 +21,11 @@ int main(int argc, char** argv) {
   int iResult;
   int errnum;
   char sendbuf[DEFAULT_BUFLEN];
+  char recvbuf[DEFAULT_BUFLEN];
+
+  //channel address
+  struct sockaddr_in channel_addr;
+  int channel_addr_size = sizeof(channel_addr);
 
   //Winsock init
   iResult = WSAStartup(MAKEWORD(2,2),&wsaData);
@@ -83,16 +88,13 @@ int main(int argc, char** argv) {
 
   //send startup message 
   strcpy(sendbuf,"hello server\n");
-  // iResult = send(ConnectSocket,sendbuf,(int)strlen(sendbuf),0);
-  // if(iResult == SOCKET_ERROR){
-  //   printf("send failed: %d\n",WSAGetLastError());
-  //   closesocket(ConnectSocket);
-  //   WSACleanup();
-  //   return 1;
-  // }
-  if(!send_safe(&ConnectSocket,sendbuf)) return 1;
+  //if(!sendto_safe(&ConnectSocket,sendbuf,&channel_addr,channel_addr_size,&iResult)) return 1;
+  if(!send_safe(&ConnectSocket,sendbuf,&iResult)) return 1;
   printf("connection message sent\n");
-
+  if(!recvfrom_safe(&ConnectSocket,recvbuf,&channel_addr,&channel_addr_size,&iResult)) return 1;
+  if(iResult > 0){
+    printf("%s",recvbuf);
+  }
   //wait for response
 
   //cleanup

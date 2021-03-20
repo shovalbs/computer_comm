@@ -9,7 +9,10 @@
 
 #define ERROR_BUF_LEN 512
 #define DEFAULT_BUFLEN 512
+
 //functions
 void printWSAError();
-BOOL send_safe(SOCKET* socket, char* buffer);
-BOOL recv_safe(SOCKET* socket, char* buffer);
+BOOL send_safe(SOCKET* socket, char* buffer,int* iResult);
+BOOL sendto_safe(SOCKET* socket, char* buffer,sockaddr_in* to,int tolen,int* iResult);
+BOOL recvfrom_safe(SOCKET* socket, char* buffer,sockaddr_in* from,int* fromlen,int* iResult);
+BOOL recv_safe(SOCKET* socket, char* buffer,int* iResult);

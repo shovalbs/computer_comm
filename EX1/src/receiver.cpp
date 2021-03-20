@@ -20,7 +20,12 @@ int main(int argc, char** argv) {
   WSADATA wsaData;
   int iResult;
   char recvbuf[DEFAULT_BUFLEN];
+  char sendbuf[DEFAULT_BUFLEN];
   int iSendResult;
+
+  //channel address
+  struct sockaddr_in channel_addr;
+  int channel_addr_size = sizeof(channel_addr);
 
   //Winsock init
   iResult = WSAStartup(MAKEWORD(2,2),&wsaData);
@@ -38,7 +43,7 @@ int main(int argc, char** argv) {
   hints.ai_socktype = SOCK_DGRAM;
   hints.ai_protocol = IPPROTO_UDP;
   hints.ai_flags = AI_PASSIVE;
-
+  char* arg = argv[1];
   iResult = getaddrinfo(NULL, argv[1], &hints, &result);
   if (iResult != 0) {
       printf("getaddrinfo failed: %s\n", strerror(iResult));
@@ -69,18 +74,33 @@ int main(int argc, char** argv) {
       return 1;
   }
   printf("socket bound\n");
-  freeaddrinfo(result);
 
   printf("client connected reciving data\n");
-
+  freeaddrinfo(result);
   // Receive until the peer shuts down the connection
   do
   {
     printf("reciveing data from socket\n");
-    //iResult = recv(ReceiverSocket,recvbuf,DEFAULT_BUFLEN,0);
-    if(!recv_safe(&ReceiverSocket,recvbuf)) return 1;
+
+    iResult = recvfrom(ReceiverSocket,recvbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,&channel_addr_size);
+    if(iResult == SOCKET_ERROR){
+      printWSAError();
+      closesocket(ReceiverSocket);
+      WSACleanup();
+      return 1;
+    }
+    printf("channel address: %s\n",inet_ntoa(channel_addr.sin_addr));
     if(iResult > 0){
       printf("%s",recvbuf);
+      strcpy(sendbuf,"message recieved by receiver\n");
+      iResult = sendto(ReceiverSocket,sendbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,channel_addr_size);
+      if(iResult == SOCKET_ERROR){
+        printWSAError();
+        closesocket(ReceiverSocket);
+        WSACleanup();
+        return 1;
+      }
+      printf("message sent to channel\n");
     } 
     else if(iResult == 0){
       printf("connection closing\n");
