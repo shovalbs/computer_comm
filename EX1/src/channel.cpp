@@ -13,7 +13,7 @@
 #include "time.h"
 
 #pragma comment(lib, "Ws2_32.lib")
-#define DEFAULT_PORT "27015"
+
 int main(int argc, char** argv) {
   //argv  1:sender_port 2:receiver_ip 3:receiver_port
   //global objects
@@ -33,7 +33,8 @@ int main(int argc, char** argv) {
   //Winsock init
   iResult = WSAStartup(MAKEWORD(2,2),&wsaData);
   if(iResult != 0){
-    printf("WSAStartup failed: %s\n",strerror(iResult));
+    printf("WSAStartup failed\n");
+    printWSAError();
     return 1;
   }
   printf("winsock initialized\n");
@@ -50,17 +51,19 @@ int main(int argc, char** argv) {
   //resolve socket address
   iResult = getaddrinfo(argv[2], argv[3], &hints, &recv_result);
   if (iResult != 0) {
-      printf("getaddrinfo failed: %s\n", strerror(iResult));
+      printf("getaddrinfo failed\n");
+      printWSAError();
       WSACleanup();
       return 1;
   }
     iResult = getaddrinfo(NULL, argv[1], &hints, &send_result);
   if (iResult != 0) {
-      printf("getaddrinfo failed: %s\n", strerror(iResult));
+      printf("getaddrinfo failed\n");
+      printWSAError();
       WSACleanup();
       return 1;
   }
-  printf("socket address resolved\n");
+  printf("socket address's resolved for sender and reciever\n");
   //create socket
 
   SOCKET ChannelRecvSocket = INVALID_SOCKET;
@@ -106,14 +109,12 @@ int main(int argc, char** argv) {
       printWSAError();
   }
   freeaddrinfo(recv_result);
-  printf("receiver socket found\n");
-
   if (ChannelRecvSocket == INVALID_SOCKET) {
       printf("Unable to connect to server!\n");
       WSACleanup();
       return 1;
   }
-  printf("connected to reciver socket\n");
+  printf("receiver socket connected\n");
 
   // Receive until the peer shuts down the connection
   do
@@ -122,16 +123,20 @@ int main(int argc, char** argv) {
     //receive msg from sender
     if(!recvfrom_safe(&ChannelSendSocket,recvbuf,&sender_addr,&sender_addr_size,&iResult)) return 1;
     if(iResult>0){
-      printf("from sender: %s\n",recvbuf);
+      text_green();
+      printf("%s",recvbuf);
+      text_reset();
       //if(!sendto_safe(&ChannelRecvSocket,recvbuf,&recver_addr,recver_addr_size,&iResult)) return 1;
       if(!send_safe(&ChannelRecvSocket,recvbuf,&iResult));
       printf("message sent to receiver\n");
       if(!recvfrom_safe(&ChannelRecvSocket,recvbuf,&recver_addr,&recver_addr_size,&iResult)) return 1;
       if(iResult > 0){
-        printf("from receiver: %s\n",recvbuf);
+        text_green();
+        printf("%s",recvbuf);
+        text_reset();
         strcpy(sendbuf,"response to sender from channel\n");
         if(!sendto_safe(&ChannelSendSocket,sendbuf,&sender_addr,sender_addr_size,&iResult)) return 1;
-        printf("message sent to sender\n");
+        printf("response sent to sender\n");
       }
       else{
         printf("mesage from receiver empty\n");
@@ -148,7 +153,8 @@ int main(int argc, char** argv) {
   //shutdown channle
   iResult = shutdown(ChannelSendSocket,SD_BOTH);
   if(iResult == SOCKET_ERROR){
-      printf("shutdown failed: %d\n", WSAGetLastError());
+      printf("shutdown failed: %d\n");
+      printWSAError();
       closesocket(ChannelSendSocket);
       WSACleanup();
       return 1;  

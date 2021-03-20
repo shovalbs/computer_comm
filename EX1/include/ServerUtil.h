@@ -16,3 +16,8 @@ BOOL send_safe(SOCKET* socket, char* buffer,int* iResult);
 BOOL sendto_safe(SOCKET* socket, char* buffer,sockaddr_in* to,int tolen,int* iResult);
 BOOL recvfrom_safe(SOCKET* socket, char* buffer,sockaddr_in* from,int* fromlen,int* iResult);
 BOOL recv_safe(SOCKET* socket, char* buffer,int* iResult);
+
+//text color
+void text_green();
+void text_red();
+void text_reset();

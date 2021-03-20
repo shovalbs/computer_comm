@@ -93,7 +93,9 @@ int main(int argc, char** argv) {
   printf("connection message sent\n");
   if(!recvfrom_safe(&ConnectSocket,recvbuf,&channel_addr,&channel_addr_size,&iResult)) return 1;
   if(iResult > 0){
+    text_green();
     printf("%s",recvbuf);
+    text_reset();
   }
   //wait for response
 

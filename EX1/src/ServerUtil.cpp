@@ -55,6 +55,18 @@ BOOL recvfrom_safe(SOCKET* socket, char* buffer,sockaddr_in* from,int* fromlen,i
     WSACleanup();
     return FALSE;
   }
+  printf("sender ip: %s\tsender port: %d\n",inet_ntoa(from->sin_addr),from->sin_port);
   return TRUE;
 }
 
+
+//print colors
+void text_green () {
+  printf("\033[0;32m");
+}
+void text_red() {
+  printf("\033[0;31m");
+}
+void text_reset () {
+  printf("\033[0m");
+}

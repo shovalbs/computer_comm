@@ -91,7 +91,9 @@ int main(int argc, char** argv) {
     }
     printf("channel address: %s\n",inet_ntoa(channel_addr.sin_addr));
     if(iResult > 0){
+      text_green();
       printf("%s",recvbuf);
+      text_reset();
       strcpy(sendbuf,"message recieved by receiver\n");
       iResult = sendto(ReceiverSocket,sendbuf,DEFAULT_BUFLEN,0,(SOCKADDR*) &channel_addr,channel_addr_size);
       if(iResult == SOCKET_ERROR){
