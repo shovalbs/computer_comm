@@ -31,6 +31,7 @@ int main(int argv[], int argc[]){
             fclose(fp);
             return 1;
         }
+        
         printf("%s a\n",readbuf);
     }
 
