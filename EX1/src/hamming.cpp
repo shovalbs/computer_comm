@@ -31,7 +31,7 @@ int main(int argv[], int argc[]){
             fclose(fp);
             return 1;
         }
-        
+
         printf("%s a\n",readbuf);
     }
 
@@ -55,5 +55,4 @@ void hamming_encoder(char * uncoded_msg, char* coded_msg){
     // if(0==)
     // coded_msg[0]=
 
-    return NULL;
-}
+
